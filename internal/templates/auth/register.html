@@ -1,0 +1,44 @@
+{{ define "title" }}Register - My Blog{{ end }}
+{{ define "content" }}
+<div class="w-3/4 bg-white rounded mx-auto p-4 mt-8">
+  <form method="POST" action="/register">
+    <h2 class="text-lg font-bold mb-4 text-center">Register Page</h2>
+    {{if .Error}}
+    <h2 class="text-md font-bold mb-4 text-red-800">{{ .Error }}</h2>
+    {{end}}
+    <div class="flex flex-col mb-4">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name"
+        class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" />
+      {{if .Errors.name}}
+      <p class="mt-1 text-red-800">{{ .Errors.name }}</p>
+      {{end}}
+    </div>
+    <div class="flex flex-col mb-4">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email"
+        class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" />
+      {{if .Errors.email }}
+      <p class="mt-1 text-red-800">{{ .Errors.email }}</p>
+      {{end}}
+    </div>
+    <div class="flex flex-col mb-4">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password"
+        class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" />
+      {{if .Errors.password }}
+      <p class="mt-1 text-red-800">{{ .Errors.password }}</p>
+      {{end}}
+    </div>
+    <div class="flex flex-col mb-4">
+      <label for="confirm_password">Confirm Password</label>
+      <input type="password" id="confirm_password" name="confirm_password"
+        class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" />
+      {{if .Errors.confirm_password }}
+      <p class="mt-1 text-red-800">{{ .Errors.confirm_password }}</p>
+      {{end}}
+    </div>
+    <button class="bg-black px-4 py-2 rounded-lg hover:bg-gray-800 text-white">Submit</button>
+  </form>
+</div>
+{{ end }}
