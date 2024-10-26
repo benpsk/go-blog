@@ -4,7 +4,7 @@ import "github.com/benpsk/go-blog/internal/models"
 
 templ Register(errStr string, err *models.RegisterError) {
 <div class="w-3/4 bg-white rounded mx-auto p-4 mt-8">
-  <form method="POST" action="/register">
+  <form method="POST" action="/register" hx-post={ string(templ.URL("/register")) } hx-target="#body">
     <h2 class="text-lg font-bold mb-4 text-center">Register Page</h2>
     if errStr != "" {
     <h2 class="text-md font-bold mb-4 text-red-800">{ errStr }</h2>

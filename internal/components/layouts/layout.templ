@@ -12,22 +12,49 @@ templ Layout(title string, user models.AuthUser, content templ.Component) {
 				{ title }
 			</title>
 			<script src="https://cdn.tailwindcss.com"></script>
+			<script src="https://unpkg.com/htmx.org@2.0.3" integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq" crossorigin="anonymous"></script>
 		</head>
-		<body class="bg-gray-100">
+		<body class="bg-gray-100" id="body">
 			<div class="max-w-screen-md mx-auto p-8">
 				<header class="mb-4 flex justify-between items-center">
-					<a href="/" class="text-xl">My Blog</a>
+					<a href="/" hx-get={ string(templ.URL("/")) } hx-target="#body" hx-push-url="true" class="text-xl">My Blog</a>
 					if user.Id != 0 {
 						<div class="flex gap-2">
-							<a href="/dashboard" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Dashboard</a>
-							<form action="/logout" method="post">
+							<a
+								href="/dashboard"
+								hx-get={ string(templ.URL("/dashboard")) }
+								hx-target="#body"
+								hx-push-url="true"
+								class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300"
+							>Dashboard</a>
+							<form
+								action="/logout"
+								method="post"
+								hx-post={ string(templ.URL("/logout")) }
+								hx-target="#body"
+								hx-push-url="true"
+							>
 								<button class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Logout</button>
 							</form>
 						</div>
 					} else {
 						<div class="flex gap-2">
-							<a href="/login" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Login</a>
-							<a href="/register" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Register</a>
+							<a
+								href="/login"
+								hx-get={ string(templ.URL("/login")) }
+								hx-trigger="click"
+								hx-push-url="true"
+								hx-target="#body"
+								class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300"
+							>Login</a>
+							<a
+								href="/register"
+								hx-get={ string(templ.URL("/register")) }
+								hx-trigger="click"
+								hx-push-url="true"
+								hx-target="#body"
+								class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300"
+							>Register</a>
 						</div>
 					}
 				</header>

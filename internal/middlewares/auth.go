@@ -23,9 +23,6 @@ func Auth(next http.HandlerFunc, db *pgx.Conn) http.HandlerFunc {
 				next.ServeHTTP(w, r)
 				return
 			}
-		} else {
-			http.Error(w, "Unauthorized", http.StatusUnauthorized)
-			return
 		}
 		// check the token
 		var userId int

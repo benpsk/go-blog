@@ -10,7 +10,8 @@ templ Home(data *models.HomeResponse) {
 <ul class="grid grid-cols-2 gap-4">
   for _, item := range data.Data {
   <li>
-    <a href={ templ.URL(fmt.Sprintf("/post/%v", item.Id)) } class="bg-white rounded-md p-4 hover:bg-gray-200 block">
+    <a href={ templ.URL(fmt.Sprintf("/post/%v", item.Id)) } hx-get={ string(templ.URL(fmt.Sprintf("/post/%v", item.Id)))
+      } hx-target="#body" hx-push-url="true" class="bg-white rounded-md p-4 hover:bg-gray-200 block">
       <h3 class="text-md font-bold mb-2">{ item.Title }</h3>
       <p class="">{ item.Excerpt }</p>
       <p class="text-gray-600 text-sm mt-2">Author: { item.User.Name }</p>
