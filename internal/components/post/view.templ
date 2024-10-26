@@ -1,0 +1,13 @@
+package post
+
+import "github.com/benpsk/go-blog/internal/models"
+
+templ View(post *models.Post) {
+<h2 class="text-lg mb-4">View Page</h2>
+<div class="bg-white rounded-md p-4">
+  <h3 class="text-md font-bold mb-2">{ post.Title }</h3>
+  <p class="">{ post.Excerpt }</p>
+  <p class="mt-2">{ post.Body }</p>
+  <p class="text-gray-600 text-sm mt-2">Author: { post.User.Name }</p>
+</div>
+}
